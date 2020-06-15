@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  mongo-db:
+    image: mongo
+    restart: always
+
+  boilerplate:
+    build:
+      context: ../
+      dockerfile: ./scripts/production.Dockerfile
+    image: bolit
+    environment:
+      NODE_ENV: production
+      MONGODB_URL: mongodb://mongo-db:27017/projects
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo-db
