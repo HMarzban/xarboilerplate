@@ -5,7 +5,7 @@ const Search = require("./search.controller")
 router.get("/healthCheck", "Ok")
 
 router.get("/", valid.search, async (req, res) => {
-	const {artistName} = req.query
+	const { artistName } = req.query
 	return Search.albums(artistName)
 })
 

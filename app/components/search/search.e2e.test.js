@@ -3,14 +3,13 @@ let app = null
 let request = null
 
 describe("Search Itunes Component API E2E Test:", () => {
-
 	beforeAll(async () => {
 		app = require("../../app").express
 		request = supertest(app)
 	})
 
 	it("Search for 'Lady Gaga' Albumes and its tracks", () => {
-		const artistName = 'Lady Gaga'
+		const artistName = "Lady Gaga"
 		return request
 			.get(`/api/v1/search/itunes?artistName=${artistName}`)
 			.expect(200)
@@ -34,5 +33,4 @@ describe("Search Itunes Component API E2E Test:", () => {
 				expect(artistNames).toEqual(expect.arrayContaining(expectArtistsNames))
 			})
 	})
-
 })

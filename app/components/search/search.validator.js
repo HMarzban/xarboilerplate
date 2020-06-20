@@ -5,8 +5,8 @@ const search = checkSchema({
 	artistName: {
 		in: ["query"],
 		exists: true,
-		isString: true
-	}
+		isString: true,
+	},
 })
 
 module.exports = {
