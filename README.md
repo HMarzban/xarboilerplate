@@ -1,3 +1,4 @@
+<p>
 <a href="https://opensource.org/licenses/MIT" rel="nofollow"><img src="https://camo.githubusercontent.com/e192698c11f7faf47a6587a45741926b04e6b5a4/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f6d616b652d636f7665726167652d62616467652e737667" alt="License" data-canonical-src="https://img.shields.io/npm/l/make-coverage-badge.svg" style="max-width:100%;"></a>
 
 <a href="https://github.com/sheerun/prettier-standard">
@@ -14,7 +15,7 @@
 <img src="./coverage/badge-branches.svg" alt="Coverage branches" data-canonical-src="./coverage/badge-branches.svg" style="max-width:100%;">
 
 <img src="./coverage/badge-statements.svg" alt="Coverage statements" data-canonical-src="./coverage/badge-statements.svg" style="max-width:100%;">
-
+</p>
 
 # xarboilerplate
 NodeJs Expressjs boilerplate 
