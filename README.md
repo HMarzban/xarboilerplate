@@ -37,4 +37,13 @@ yarn build:prod:down    # docker-compose -f ./scripts/docker-compose.yml down
 
 ```
 
+## Heavily Inspired and Used These Methods
+
+Try to use these best practices:
+
+ - [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+ - [javascript testing best practices](https://github.com/goldbergyoni/javascript-testing-best-practices/)
+
+ Feel free to fork it and/or contribute if you’d like :)
+
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
