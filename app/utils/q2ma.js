@@ -15,13 +15,13 @@ const isEmpty = data => Object.entries(data).length === 0 && data.constructor ==
 const dateConvert = (dateFilterValue, format = "DATE") => {
 	if (typeof dateFilterValue === "string" || typeof dateFilterValue === "number") {
 		const date = new Date(dateFilterValue)
-		return format === "NUMBER" ? date.getTime() : date
+		return format == "NUMBER" ? date.getTime() : date
 	}
 	return dateFilterValue
 }
 
-function normalizeCriteria(obj, { dateFields = defaultDateFieldNames, dateFormat }) {
-	for (const key in obj) {
+function normalizeCriteria (obj, { dateFields = defaultDateFieldNames, dateFormat }) {
+	for (let key in obj) {
 		if (typeof obj[key] === "object") normalizeCriteria(obj[key], { dateFields, dateFormat })
 
 		if (dateFields.includes(key)) obj[key] = dateConvert(obj[key], { dateFields, dateFormat })
@@ -38,11 +38,12 @@ function normalizeCriteria(obj, { dateFields = defaultDateFieldNames, dateFormat
 /**
  * @param  {('START'|'END')} matchPosition
  */
-function q2mPipelines({ pipelines, queryString, dateFields, dateFormat, matchPosition = "START" }) {
+function q2mPipelines ({ pipelines, queryString, dateFields, dateFormat, matchPosition = "START" }) {
 	let newPiplines = []
 	let {
 		criteria: filter = {},
 		options: { fields, sort = {}, skip = 0, limit = 10 },
+		links,
 	} = q2m(queryString)
 	filter = normalizeCriteria(filter, { dateFields, dateFormat })
 
@@ -60,15 +61,15 @@ function q2mPipelines({ pipelines, queryString, dateFields, dateFormat, matchPos
 	}
 
 	// Defualt sort base on _id with the -1, that's mean descending! :) beacuse the _id is a function of time
-	if (!Object.prototype.hasOwnProperty.call(sort, "_id")) Object.assign(sort, { _id: -1 })
+	if (!sort.hasOwnProperty("_id")) Object.assign(sort, { _id: -1 })
 
-	if (sort) facetPipLines.$facet.pagedResult.push({ $sort: sort })
+	if (sort) facetPipLines["$facet"].pagedResult.push({ $sort: sort })
 
-	if (skip) facetPipLines.$facet.pagedResult.push({ $skip: skip })
+	if (skip) facetPipLines["$facet"].pagedResult.push({ $skip: skip })
 
-	if (limit) facetPipLines.$facet.pagedResult.push({ $limit: limit })
+	if (limit) facetPipLines["$facet"].pagedResult.push({ $limit: limit })
 
-	if (fields) facetPipLines.$facet.pagedResult.push({ $project: fields })
+	if (fields) facetPipLines["$facet"].pagedResult.push({ $project: fields })
 
 	newPiplines = [...newPiplines, facetPipLines]
 
@@ -79,12 +80,11 @@ const pagedAggregate = async (collectionName, pagedPipelines) => {
 	try {
 		const result = await collectionName.aggregate(pagedPipelines)
 
-		if (!(result[0] && result[0].pagedResult) || !(result[0] && result[0].total.length && Object.prototype.hasOwnProperty.call(result[0].total[0], "sum")))
-			return { Total: 0, Result: [] }
+		if (!(result[0] && result[0].pagedResult) || !(result[0] && result[0].total.length && result[0].total[0].hasOwnProperty("sum"))) return { Total: 0, Result: [] }
 
 		return { Result: result[0].pagedResult, Total: result[0].total[0].sum }
 	} catch (error) {
-		throw new Error({ code: "EXCEPTION", _detail: { pagedPipelines }, _msg: "error on pagedAggregate", _innerException: error })
+		throw { code: "EXCEPTION", _detail: { pagedPipelines }, _msg: "error on pagedAggregate", _innerException: error }
 	}
 }
 
@@ -92,24 +92,28 @@ const pagedFind = async (filter, project = {}, option = {}, queryString, dateFie
 	let {
 		criteria = {},
 		options: { fields = {}, sort = {}, skip = 0, limit = 20 },
+		links,
 	} = q2m(queryString)
+
+	if (!option.sort) option.sort = {}
+	sort = Object.assign(sort, option.sort)
 
 	criteria = normalizeCriteria(criteria, { dateFields, dateFormat })
 	// priority of merge Object are with backend not querystring
 	criteria = Object.assign(criteria, filter)
 	project = Object.assign(project, fields)
-	option = Object.assign(option, sort, { skip }, { limit })
+	option = Object.assign(option, { sort }, { skip }, { limit })
 
-	if (!Object.prototype.hasOwnProperty.call(sort, "_id")) Object.assign(sort, { _id: -1 })
+	if (!sort.hasOwnProperty("_id")) Object.assign(sort, { _id: -1 })
 
-	const [pagedResult, sum] = await Promise.all([dbCollection.find(criteria, project, option).lean(), dbCollection.countDocuments(criteria)])
+	const [pagedResult, sum] = await Promise.all([dbCollection.find(criteria, project, option).lean(), dbCollection.find(criteria).count()])
 
 	return { Result: pagedResult, Total: sum }
 }
 
 const q2ma = ({ filter, project, options, pipelines, queryString, dateFields, dateFormat, matchPosition = "START", collectionName }) => {
 	try {
-		if (!collectionName) throw new Error("collection Name does not specified")
+		if (!collectionName) throw "collection Name does not specified"
 		if (pipelines) {
 			const newPiplines = q2mPipelines({ pipelines, queryString, dateFields, dateFormat, matchPosition })
 			return pagedAggregate(collectionName, newPiplines)
@@ -117,7 +121,7 @@ const q2ma = ({ filter, project, options, pipelines, queryString, dateFields, da
 			return pagedFind(filter, project, options, queryString, dateFields, dateFormat, collectionName)
 		}
 	} catch (error) {
-		throw new Error({ code: "EXCEPTION", _detail: { pipelines }, _msg: "error on q2ma", _innerException: error })
+		throw { code: "EXCEPTION", _detail: { pipelines }, _msg: "error on q2ma", _innerException: error }
 	}
 }
 

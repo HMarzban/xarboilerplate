@@ -372,8 +372,8 @@ end_of_record
 TN:
 SF:app\components\profiles\profiles.controller.js
 FN:3,(anonymous_0)
-FN:13,(anonymous_1)
-FN:15,(anonymous_2)
+FN:18,(anonymous_1)
+FN:20,(anonymous_2)
 FNF:3
 FNH:3
 FNDA:1,(anonymous_0)
@@ -382,10 +382,10 @@ FNDA:1,(anonymous_2)
 DA:1,6
 DA:3,6
 DA:4,1
-DA:10,1
-DA:13,6
-DA:15,6
-DA:17,6
+DA:15,1
+DA:18,6
+DA:20,6
+DA:22,6
 LF:7
 LH:7
 BRF:0

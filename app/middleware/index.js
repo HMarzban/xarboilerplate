@@ -4,13 +4,14 @@ const fileUpload = require("express-fileupload")
 const morgan = require("morgan")
 const helmet = require("helmet")
 const chalk = require("chalk")
+const url = require("url")
 
 app.use(morgan(`${chalk.green("[morgan]")} :method :url :status - :response-time ms`))
 
 app.use(helmet())
 
 app.use((req, res, next) => {
-	const queryString = req.url.split("?")[1] || ""
+	const queryString = url.parse(req.url).query
 	req.queryString = queryString
 	next()
 })
