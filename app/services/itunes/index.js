@@ -4,11 +4,9 @@ const ITUNES_URL = "https://itunes.apple.com"
 
 const searchArticts = async artistName => {
 	const URL = `${ITUNES_URL}/search?term=${artistName}&entity=musicArtist`
-
 	let artists = await superagent.get(URL)
-
-	if (artists.status !== 200) throw new Error("search bad happend" + artists.status)
-
+	if (artists.status !== 200) throw new Error({ code: "EXCEPTION", detail: { status: artists.status, body: artists.body }, Message: "searching for artist has issues!" })
+	
 	artists = JSON.parse(artists.text)
 	const artistsId = artists.results.map(el => el.artistId).join(",")
 	return { artists: artists.results, artistsId }
@@ -17,7 +15,7 @@ const searchArticts = async artistName => {
 const searchAlbums = async artistsId => {
 	const URL = `${ITUNES_URL}/lookup?id=${artistsId}&entity=album&limit=3&sort=top`
 	let result = await superagent.get(URL)
-	if (result.status !== 200) throw new Error("search bad happend" + result.status)
+	if (result.status !== 200) throw new Error({ code: "EXCEPTION", detail: { status: result.status, body: result.body }, Message: "searching for albums has issues!" })
 
 	result = JSON.parse(result.text)
 	result = result.results.filter(album => album.collectionType === "Album")
@@ -33,7 +31,7 @@ const searchAlbums = async artistsId => {
 const searchSongs = async albumsId => {
 	const URL = `${ITUNES_URL}/lookup?id=${albumsId}&entity=song`
 	let result = await superagent.get(URL)
-	if (result.status !== 200) throw new Error("search bad happend" + result.status)
+	if (result.status !== 200) throw new Error({ code: "EXCEPTION", detail: { status: result.status, body: result.body }, Message: "searching for songs has issues!" })
 
 	result = JSON.parse(result.text)
 	result = result.results
