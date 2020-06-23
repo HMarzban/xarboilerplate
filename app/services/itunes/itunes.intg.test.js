@@ -1,7 +1,6 @@
 const { search } = require("./index")
 
 describe("Service: Search ituns for Artists", () => {
-
 	it("Send empty artistname ", async () => {
 		const artistName = ""
 		const results = await search(artistName)

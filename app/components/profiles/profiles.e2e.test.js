@@ -72,16 +72,10 @@ describe("Profile Component API E2E Test:", () => {
 	})
 
 	it("Create a project & tasks", async done => {
-		const resProject = await request
-			.post("/api/v1/projects")
-			.set({ Authorization: userToken })
-			.send(mockProject)
+		const resProject = await request.post("/api/v1/projects").set({ Authorization: userToken }).send(mockProject)
 		mockProject = resProject.body.Result
 
-		const resTask = await request
-			.post(`/api/v1/tasks/project/${mockProject._id}`)
-			.set({ Authorization: userToken })
-			.send(mockTask)
+		const resTask = await request.post(`/api/v1/tasks/project/${mockProject._id}`).set({ Authorization: userToken }).send(mockTask)
 		mockTask = resTask.body.Result
 
 		done()

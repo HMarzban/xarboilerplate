@@ -6,7 +6,7 @@ const searchArticts = async artistName => {
 	const URL = `${ITUNES_URL}/search?term=${artistName}&entity=musicArtist`
 	let artists = await superagent.get(URL)
 	if (artists.status !== 200) throw new Error({ code: "EXCEPTION", detail: { status: artists.status, body: artists.body }, Message: "searching for artist has issues!" })
-	
+
 	artists = JSON.parse(artists.text)
 	const artistsId = artists.results.map(el => el.artistId).join(",")
 	return { artists: artists.results, artistsId }
