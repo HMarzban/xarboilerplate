@@ -27,11 +27,7 @@ module.exports = {
 	coveragePathIgnorePatterns: ["\\\\node_modules\\\\", "./app/utils", "./app/middleware", "./app/datasources", "./app/bin"],
 
 	// A list of reporter names that Jest uses when writing coverage reports
-	coverageReporters: [
-		"json-summary", 
-		"text",
-		"lcov"
-	],
+	coverageReporters: ["json-summary", "text", "lcov"],
 
 	// An object that configures minimum threshold enforcement for coverage results
 	// coverageThreshold: undefined,
