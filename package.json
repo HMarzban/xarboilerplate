@@ -23,7 +23,7 @@
 	},
 	"husky": {
     "hooks": {
-      "pre-commit": "npm run pretty"
+      "pre-push": "npm run pretty"
     }
   },
 	"dependencies": {
