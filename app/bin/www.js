@@ -6,7 +6,7 @@ const { PORT, NODE_ENV } = process.env
 
 app.set("port", PORT)
 
-function onError(error) {
+function onError (error) {
 	if (error.syscall !== "listen") throw error
 
 	const bind = typeof PORT === "string" ? "Pipe " + PORT : "Port " + PORT

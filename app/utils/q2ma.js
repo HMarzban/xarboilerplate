@@ -20,7 +20,7 @@ const dateConvert = (dateFilterValue, format = "DATE") => {
 	return dateFilterValue
 }
 
-function normalizeCriteria(obj, { dateFields = defaultDateFieldNames, dateFormat }) {
+function normalizeCriteria (obj, { dateFields = defaultDateFieldNames, dateFormat }) {
 	for (let key in obj) {
 		if (typeof obj[key] === "object") normalizeCriteria(obj[key], { dateFields, dateFormat })
 
@@ -38,7 +38,7 @@ function normalizeCriteria(obj, { dateFields = defaultDateFieldNames, dateFormat
 /**
  * @param  {('START'|'END')} matchPosition
  */
-function q2mPipelines({ pipelines, queryString, dateFields, dateFormat, matchPosition = "START" }) {
+function q2mPipelines ({ pipelines, queryString, dateFields, dateFormat, matchPosition = "START" }) {
 	let newPiplines = []
 	let {
 		criteria: filter = {},
