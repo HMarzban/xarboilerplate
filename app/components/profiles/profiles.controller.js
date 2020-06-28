@@ -2,8 +2,13 @@ const Profiles = require("./profiles.model")
 
 const getProfile = async (user, Projects, Tasks) => {
 	const [projects, tasks, profile] = await Promise.all([
-		Projects.find({ userId: user._id }).limit(10).lean(),
-		Tasks.find({ "userAssignment._id": user._id }).sort({ createdAt: -1 }).limit(10).lean(),
+		Projects.find({ userId: user._id })
+			.limit(10)
+			.lean(),
+		Tasks.find({ "userAssignment._id": user._id })
+			.sort({ createdAt: -1 })
+			.limit(10)
+			.lean(),
 		Profiles.findOne({ _id: user._id }, { password: 0 }).lean(),
 	])
 

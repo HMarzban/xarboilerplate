@@ -1,7 +1,7 @@
 const path = require("path")
 const debug = require("debug")("x-router")
 
-function createRoute(method, responseHandler, expressRouter) {
+function createRoute (method, responseHandler, expressRouter) {
 	return (routePath, ...callbacks) => {
 		const lastCallback = callbacks.pop()
 		expressRouter[method](routePath, ...callbacks, (req, res) => {
@@ -13,7 +13,7 @@ function createRoute(method, responseHandler, expressRouter) {
 	}
 }
 
-async function APIHandler(req, res, result) {
+async function APIHandler (req, res, result) {
 	try {
 		// whether result is a promise or a literal value, await will get the literal value.
 		const Result = await result
@@ -29,7 +29,7 @@ async function APIHandler(req, res, result) {
 	}
 }
 
-async function fileHandler(req, res, result) {
+async function fileHandler (req, res, result) {
 	try {
 		// whether result is a promise or a literal value, await will get the literal value.
 		const filePath = await result

@@ -9,23 +9,22 @@
 	},
 	"license": "MIT",
 	"scripts": {
-		"start": "nodemon ./app/server.js",
-		"start:pm2": "pm2 start ./scripts/pm2.config.js --only backend-local",
-		"test:e2e": "jest -c ./jest.config.e2e.js --testTimeout=20000",
-		"test:e2e:coverage": "jest -c ./jest.config.e2e.js --coverage --testTimeout=20000",
-		"test:intg": "jest \\.intg.test.js$ --testTimeout=20000",
-		"test:badges": "npm run test:e2e:coverage & jest-coverage-badges",
-		"lint": "prettier-standard --lint **/*.js",
-		"pretty": "prettier --write **/*.js",
+		"start": "npx nodemon ./app/server.js",
+		"start:pm2": "npx pm2 start ./scripts/pm2.config.js --only backend-local",
+		"test:e2e": "npx jest -c ./jest.config.e2e.js --testTimeout=30000",
+		"test:e2e:coverage": "npx jest -c ./jest.config.e2e.js --coverage --testTimeout=30000",
+		"test:intg": "npx jest \\.intg.test.js$ --testTimeout=30000",
+		"test:badges": "npm run test:e2e:coverage & npx jest-coverage-badges",
+		"pretty": "npx prettier-standard --format --lint **/*.js",
 		"build:prod": "docker build -t bolit -f ./scripts/production.Dockerfile .",
 		"build:prod:up": "docker-compose -f ./scripts/docker-compose.yml up",
 		"build:prod:down": "docker-compose -f ./scripts/docker-compose.yml down"
 	},
 	"husky": {
-    "hooks": {
-      "pre-push": "npm run pretty"
-    }
-  },
+		"hooks": {
+			"pre-push": "npm run pretty"
+		}
+	},
 	"dependencies": {
 		"bcrypt": "^4.0.1",
 		"body-parser": "^1.19.0",
@@ -38,19 +37,20 @@
 		"find": "^0.3.0",
 		"helmet": "^3.22.0",
 		"jsonwebtoken": "^8.5.1",
-		"jwt-js-decode": "^1.4.1",
 		"mongoose": "^5.9.10",
 		"morgan": "^1.10.0",
+		"nodemon": "^2.0.4",
+		"pm2": "^4.4.0",
 		"query-to-mongo": "^0.10.1",
 		"superagent": "^5.2.2",
-		"superagent-jsonp": "^0.2.1",
 		"uniqid": "^5.2.0"
 	},
 	"devDependencies": {
 		"faker": "^4.1.0",
 		"husky": "^4.2.5",
 		"jest": "^26.0.1",
-		"prettier": "^2.0.5",
+		"jest-coverage-badges": "^1.1.2",
+		"jwt-js-decode": "^1.4.1",
 		"prettier-standard": "^16.3.0",
 		"supertest": "^4.0.2"
 	}
