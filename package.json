@@ -21,9 +21,7 @@
 		"build:prod:down": "docker-compose -f ./scripts/docker-compose.yml down"
 	},
 	"husky": {
-		"hooks": {
-			"pre-push": "npm run pretty"
-		}
+		"hooks": {}
 	},
 	"dependencies": {
 		"bcrypt": "^4.0.1",
