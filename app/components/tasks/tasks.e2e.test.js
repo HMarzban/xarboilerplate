@@ -50,7 +50,7 @@ describe("Tasks Component API E2E Test:", () => {
 		await dbHandler.closeDatabase()
 	})
 
-	it("suignup users", async done => {
+	it("signup users", async done => {
 		const check1 = await request.post("/api/v1/auth/otp-check").send({ phone: mockUser1.phone })
 		expect(check1.status).toBe(200)
 		expect(check1.body.Result.registered).toEqual(false)
@@ -146,7 +146,7 @@ describe("Tasks Component API E2E Test:", () => {
 			})
 	})
 
-	it("auth middelware check", () => {
+	it("auth middleware check", () => {
 		return request
 			.delete(`/api/v1/tasks/${mockTask._id}`)
 			.expect(403)

@@ -17,8 +17,8 @@ const findAllModels = () => {
 }
 
 const ensureIndexes = async () => {
-	const modelss = await findAllModels()
-	await Promise.all(modelss.map(model => model.syncIndexes()))
+	const models = await findAllModels()
+	await Promise.all(models.map(model => model.syncIndexes()))
 	return true
 }
 

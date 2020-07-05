@@ -106,10 +106,10 @@ describe("Projects Component API E2E Test:", () => {
 		return request
 			.put(`/api/v1/projects/${mockProject._id}`)
 			.set({ Authorization: userToken })
-			.send({ projectName: "Node vs nedo" })
+			.send({ projectName: "Node vs Deno" })
 			.expect(200)
 			.expect(res => {
-				expect(res.body.Result.projectName).toEqual("Node vs nedo")
+				expect(res.body.Result.projectName).toEqual("Node vs Deno")
 				mockProject = res.body.Result
 			})
 	})

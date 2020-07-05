@@ -2,7 +2,7 @@ const superagent = require("superagent")
 
 const ITUNES_URL = "https://itunes.apple.com"
 
-const searchArticts = async artistName => {
+const searchArtists = async artistName => {
 	const URL = `${ITUNES_URL}/search?term=${artistName}&entity=musicArtist`
 	let artists = await superagent.get(URL)
 	if (artists.status !== 200) throw new Error({ code: "EXCEPTION", detail: { status: artists.status, body: artists.body }, Message: "searching for artist has issues!" })
@@ -47,7 +47,7 @@ const searchSongs = async albumsId => {
 const search = async artistName => {
 	if (!artistName) return []
 
-	const { artists, artistsId } = await searchArticts(artistName)
+	const { artists, artistsId } = await searchArtists(artistName)
 
 	const { albums, albumsId } = await searchAlbums(artistsId)
 
@@ -68,7 +68,7 @@ const search = async artistName => {
 }
 
 module.exports = Object.freeze({
-	searchArticts,
+	searchArtists,
 	searchAlbums,
 	searchSongs,
 	search,

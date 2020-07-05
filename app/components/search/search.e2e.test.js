@@ -8,7 +8,7 @@ describe("Search Itunes Component API E2E Test:", () => {
 		request = supertest(app)
 	})
 
-	it("Search for 'Lady Gaga' Albumes and its tracks", () => {
+	it("Search for 'Lady Gaga' album's and its tracks", () => {
 		const artistName = "Lady Gaga"
 		return request
 			.get(`/api/v1/search/itunes?artistName=${artistName}`)
@@ -21,7 +21,7 @@ describe("Search Itunes Component API E2E Test:", () => {
 			})
 	})
 
-	it("Search for 'selena' Albumes and its tracks", () => {
+	it("Search for 'selena' album's and its tracks", () => {
 		return request
 			.get(`/api/v1/search/itunes?artistName=selena`)
 			.expect(200)

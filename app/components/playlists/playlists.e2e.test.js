@@ -47,7 +47,7 @@ describe("PlayLists Component API E2E Test:", () => {
 		await dbHandler.closeDatabase()
 	})
 
-	it("suignup users", async done => {
+	it("signup users", async done => {
 		const check1 = await request.post("/api/v1/auth/otp-check").send({ phone: mockUser1.phone })
 		expect(check1.status).toBe(200)
 		expect(check1.body.Result.registered).toEqual(false)
@@ -71,16 +71,16 @@ describe("PlayLists Component API E2E Test:", () => {
 			.send(mockPlayList)
 			.expect(200)
 			.expect(res => {
-				const resutl = res.body.Result
-				expect(resutl).toEqual(
+				const result = res.body.Result
+				expect(result).toEqual(
 					expect.objectContaining({
 						_id: expect.any(String),
 						title: expect.any(String),
 						tracks: expect.any(Array),
 					}),
 				)
-				expect(resutl.tracks).toHaveLength(1)
-				mockPlayList = resutl
+				expect(result.tracks).toHaveLength(1)
+				mockPlayList = result
 			})
 	})
 
@@ -91,16 +91,16 @@ describe("PlayLists Component API E2E Test:", () => {
 			.send({ track: mockTrack() })
 			.expect(200)
 			.expect(res => {
-				const resutl = res.body.Result
-				expect(resutl).toEqual(
+				const result = res.body.Result
+				expect(result).toEqual(
 					expect.objectContaining({
 						_id: expect.any(String),
 						title: expect.any(String),
 						tracks: expect.any(Array),
 					}),
 				)
-				expect(resutl.tracks).toHaveLength(2)
-				mockPlayList = resutl
+				expect(result.tracks).toHaveLength(2)
+				mockPlayList = result
 			})
 	})
 

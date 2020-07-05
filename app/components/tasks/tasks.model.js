@@ -3,7 +3,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 
 const STATE = ["done", "pending", "processing", "later"]
 
-const taskstSchema = new mongoose.Schema(
+const tasksSchema = new mongoose.Schema(
 	{
 		title: { type: String },
 		projectId: { type: ObjectId, indexes: true },
@@ -20,5 +20,5 @@ const taskstSchema = new mongoose.Schema(
 	},
 )
 
-const Tasks = mongoose.model("tasks", taskstSchema)
+const Tasks = mongoose.model("tasks", tasksSchema)
 module.exports = mongoose.models.Tasks || Tasks

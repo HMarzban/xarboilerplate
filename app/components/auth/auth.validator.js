@@ -47,7 +47,7 @@ const login = checkSchema({
 		isString: true,
 	},
 	password: {
-		in: ["bodybody"],
+		in: ["body"],
 		exists: true,
 		isString: true,
 		isLength: {

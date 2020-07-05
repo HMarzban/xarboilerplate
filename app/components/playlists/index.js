@@ -1,6 +1,6 @@
 const app = require("express")()
 const PlayLists = require("./playlists.router")
-const { userAuth } = require("../../middleware/auth.middelware")
+const { userAuth } = require("../../middleware/middleware")
 
 app.use("/playlists", userAuth, PlayLists)
 

@@ -1,13 +1,13 @@
 const { search } = require("./index")
 
-describe("Service: Search ituns for Artists", () => {
-	it("Send empty artistname ", async () => {
+describe("Service: Search Ituns for Artists", () => {
+	it("Send empty artist name ", async () => {
 		const artistName = ""
 		const results = await search(artistName)
 		expect(results).toHaveLength(0)
 	})
 
-	it("Search for 'Lady Gaga' Albumes and its tracks ", async () => {
+	it("Search for 'Lady Gaga' album's and its tracks ", async () => {
 		const artistName = "Lady Gaga"
 		const results = await search(artistName)
 		expect(results).toHaveLength(1)
@@ -15,7 +15,7 @@ describe("Service: Search ituns for Artists", () => {
 		expect(results[0].topAlbums.length).toBeGreaterThanOrEqual(3)
 	})
 
-	it("Search for 'selena' Albumes and its tracks ", async () => {
+	it("Search for 'selena' album's and its tracks ", async () => {
 		const artistName = "selena"
 		const results = await search(artistName)
 		const artistNames = results.map(artist => artist.artistName)

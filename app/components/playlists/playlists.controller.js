@@ -1,10 +1,10 @@
 const PlayLists = require("./playlists.model")
-const { q2ma } = require("../../utils")
+const { q2ma } = require("q2ma")
 
 const getAll = (queryString, user) => {
 	const filter = { userId: user._id }
 	const project = PlayLists.SHORT_FIELDS
-	return q2ma({ filter, queryString, project, collectionName: PlayLists })
+	return q2ma(PlayLists, { filter, queryString, project })
 }
 
 const getOne = (playListId, user) => {

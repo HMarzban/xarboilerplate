@@ -1,9 +1,9 @@
 const Projects = require("./projects.model")
-const { q2ma } = require("../../utils")
+const { q2ma } = require("q2ma")
 
 const getAll = (queryString, user) => {
 	const filter = { userId: user._id }
-	return q2ma({ filter, queryString, collectionName: Projects })
+	return q2ma(Projects, { filter, queryString })
 }
 
 const create = async (user, body) => {

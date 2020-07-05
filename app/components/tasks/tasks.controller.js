@@ -1,9 +1,9 @@
 const Tasks = require("./tasks.model")
-const { q2ma } = require("../../utils")
+const { q2ma } = require("q2ma")
 
 const getAll = (queryString, projectId) => {
 	const filter = { projectId }
-	return q2ma({ filter, queryString, collectionName: Tasks })
+	return q2ma(Tasks, { filter, queryString })
 }
 
 const getOne = taskId => Tasks.findOne({ _id: taskId }).lean()

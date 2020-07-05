@@ -16,6 +16,5 @@ const excValidation = validationResult => {
 module.exports = {
 	excValidation,
 	router: require("./router"),
-	...require("./q2ma"),
 	validatePhone,
 }

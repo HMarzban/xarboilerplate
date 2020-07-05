@@ -1,6 +1,6 @@
 {
 	"name": "xarboilerplate",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"main": "index.js",
 	"author": {
 		"email": "marzban98@gmail.com",
@@ -39,6 +39,7 @@
 		"morgan": "^1.10.0",
 		"nodemon": "^2.0.4",
 		"pm2": "^4.4.0",
+		"q2ma": "^0.8.0",
 		"query-to-mongo": "^0.10.1",
 		"superagent": "^5.2.2",
 		"uniqid": "^5.2.0"
