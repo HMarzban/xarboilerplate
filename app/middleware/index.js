@@ -10,7 +10,7 @@ app.use(morgan(`${chalk.green('[morgan]')} :method :url :status - :response-time
 app.use(helmet())
 
 app.use((req, res, next) => {
-	const queryString = new URL(`https://www.fakeDomain.com/${req.originalUrl}`)
+  const queryString = new URL(`https://www.fakeDomain.com/${req.originalUrl}`)
   req.queryString = queryString.search
   next()
 })
