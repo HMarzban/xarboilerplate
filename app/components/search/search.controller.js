@@ -1,7 +1,7 @@
-const Itunes = require("../../services/itunes")
+const Itunes = require('../../services/itunes')
 
 const albums = artistName => Itunes.search(artistName)
 
 module.exports = {
-	albums,
+  albums
 }

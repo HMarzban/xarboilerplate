@@ -2,8 +2,11 @@
 	"parserOptions": {
 			"ecmaVersion": 2017
 	},
-
+	"plugins": ["jest"],
 	"env": {
-			"es6": true
+			"es6": true,
+			"jest": true,
+			"node": true,
+			"mongo": true
 	}
 }

@@ -1,10 +1,8 @@
 <p align="center">
 <a href="https://opensource.org/licenses/MIT" rel="nofollow"><img src="https://camo.githubusercontent.com/e192698c11f7faf47a6587a45741926b04e6b5a4/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f6d616b652d636f7665726167652d62616467652e737667" alt="License" data-canonical-src="https://img.shields.io/npm/l/make-coverage-badge.svg" style="max-width:100%;"></a>
 
-<a href="https://github.com/sheerun/prettier-standard">
-    <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg">
-</a>
-<a href="https://github.com/sheerun/prettier-standard" rel="nofollow"><img src="https://camo.githubusercontent.com/58fbab8bb63d069c1e4fb3fa37c2899c38ffcd18/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d7374616e646172642d627269676874677265656e2e737667" alt="Standard - JavaScript Style Guide" data-canonical-src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" style="max-width:100%;"></a>
+
+<img src="https://camo.githubusercontent.com/58fbab8bb63d069c1e4fb3fa37c2899c38ffcd18/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d7374616e646172642d627269676874677265656e2e737667" alt="Standard - JavaScript Style Guide" data-canonical-src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" style="max-width:100%;">
 
 
 <img src="./coverage/badge-lines.svg" alt="Coverage lines" data-canonical-src="./coverage/badge-lines.svg" style="max-width:100%;">
@@ -37,9 +35,7 @@ yarn build:prod:down    # docker-compose -f ./scripts/docker-compose.yml down
 
 ```
 
-## Inspired and Used These Methods
-
-Try to use these best practices:
+## Tried to use these best methods
 
  - [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
  - [javascript testing best practices](https://github.com/goldbergyoni/javascript-testing-best-practices/)

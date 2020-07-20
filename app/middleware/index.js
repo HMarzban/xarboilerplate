@@ -1,19 +1,19 @@
-const app = require("express")()
-const bodyParser = require("body-parser")
-const fileUpload = require("express-fileupload")
-const morgan = require("morgan")
-const helmet = require("helmet")
-const chalk = require("chalk")
-const url = require("url")
+const app = require('express')()
+const bodyParser = require('body-parser')
+const fileUpload = require('express-fileupload')
+const morgan = require('morgan')
+const helmet = require('helmet')
+const chalk = require('chalk')
+const URL = require('url')
 
-app.use(morgan(`${chalk.green("[morgan]")} :method :url :status - :response-time ms`))
+app.use(morgan(`${chalk.green('[morgan]')} :method :url :status - :response-time ms`))
 
 app.use(helmet())
 
 app.use((req, res, next) => {
-	const queryString = url.parse(req.url).query
-	req.queryString = queryString
-	next()
+  const queryString = new URL(req.url).search
+  req.queryString = queryString
+  next()
 })
 
 app.use(bodyParser.urlencoded({ extended: true }))
