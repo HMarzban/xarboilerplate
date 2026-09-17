@@ -17,7 +17,7 @@
 		"test:e2e": "npx jest -c ./jest.config.e2e.js --testTimeout=30000",
 		"test:e2e:coverage": "npx jest -c ./jest.config.e2e.js --coverage --testTimeout=30000",
 		"test:intg": "npx jest \\.intg.test.js$ --testTimeout=30000",
-		"test:badges": "npm run test:e2e:coverage & npx jest-coverage-badges",
+		"test:badges": "npm run test:e2e:coverage && npx jest-coverage-badges",
 		"lint": "npx standard --fix **/*.js",
 		"build:prod": "docker build -t bolit -f ./scripts/production.Dockerfile .",
 		"build:prod:up": "docker-compose -f ./scripts/docker-compose.yml up",
