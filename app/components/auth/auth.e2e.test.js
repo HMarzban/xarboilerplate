@@ -47,7 +47,7 @@ describe('Auth OTP Component API E2E Test:', () => {
       })
   })
 
-  it('signup', async done => {
+  it('signup', async () => {
     const user = { ...mockUser, hashedCode, code }
     const res = await request.post('/api/v1/auth/signup').send(user)
     expect(res.status).toBe(200)
@@ -56,7 +56,6 @@ describe('Auth OTP Component API E2E Test:', () => {
         token: expect.any(String)
       })
     )
-    done()
   })
 
   it('otp-login', () => {

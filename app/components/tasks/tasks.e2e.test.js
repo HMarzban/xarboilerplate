@@ -50,7 +50,7 @@ describe('Tasks Component API E2E Test:', () => {
     await dbHandler.closeDatabase()
   })
 
-  it('signup users', async done => {
+  it('signup users', async () => {
     const check1 = await request.post('/api/v1/auth/otp-check').send({ phone: mockUser1.phone })
     expect(check1.status).toBe(200)
     expect(check1.body.Result.registered).toEqual(false)
@@ -76,8 +76,6 @@ describe('Tasks Component API E2E Test:', () => {
     const signup2 = await request.post('/api/v1/auth/signup').send(user2)
     expect(signup2.body.Result).toEqual(expect.objectContaining({ token: expect.any(String) }))
     userToken2 = signup2.body.Result.token
-
-    done()
   })
 
   it('Create a project', () => {

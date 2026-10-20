@@ -3,6 +3,9 @@ const debug = require('debug')('db:mongoose')
 const path = require('path')
 const find = require('find')
 
+// Keep Mongoose 5 query filtering: unknown paths are not stripped.
+mongoose.set('strictQuery', false)
+
 const { MONGODB_URL } = process.env
 
 const findAllModels = () => {
@@ -24,7 +27,7 @@ const ensureIndexes = async () => {
 
 module.exports.connect = async mongodbURL => {
   try {
-    await mongoose.connect(mongodbURL || MONGODB_URL, { useNewUrlParser: true, autoIndex: false, useUnifiedTopology: true, useFindAndModify: false })
+    await mongoose.connect(mongodbURL || MONGODB_URL, { autoIndex: false })
     mongoose.connection.on('error', err => debug('connection/model error =>', err))
     await ensureIndexes()
     debug(`Connected to database on Worker process: ${process.pid}, ${mongodbURL || MONGODB_URL}`)
