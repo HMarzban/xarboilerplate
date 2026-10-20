@@ -47,7 +47,7 @@ describe('PlayLists Component API E2E Test:', () => {
     await dbHandler.closeDatabase()
   })
 
-  it('signup users', async done => {
+  it('signup users', async () => {
     const check1 = await request.post('/api/v1/auth/otp-check').send({ phone: mockUser1.phone })
     expect(check1.status).toBe(200)
     expect(check1.body.Result.registered).toEqual(false)
@@ -60,8 +60,6 @@ describe('PlayLists Component API E2E Test:', () => {
     const signup1 = await request.post('/api/v1/auth/signup').send(user1)
     expect(signup1.body.Result).toEqual(expect.objectContaining({ token: expect.any(String) }))
     userToken1 = signup1.body.Result.token
-
-    done()
   })
 
   it('Create a new playList and add current track to it', () => {
